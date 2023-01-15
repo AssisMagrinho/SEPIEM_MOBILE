@@ -53,6 +53,8 @@ import java.util.List;
 
 public class Cadastrar extends AppCompatActivity {
 
+    String total;
+
     private long backPressedTime;
     private Toast backToast;
 
@@ -72,9 +74,9 @@ public class Cadastrar extends AppCompatActivity {
     EditText curso ;
     TextView lblDocumentos ;
     StorageReference storageReference;
-    DatabaseReference databaseReference, databaseReferenceCursos;
+    DatabaseReference databaseReference, databaseReferenceCursos, databaseReferenceContInscritos;
 
-    List<String> nomes, escolas;
+    List<String> nomes, escolas, totalIns;
 
     Button  btnFinalizarInscricao, btnCarregarDocumentos;
 
@@ -116,6 +118,7 @@ public class Cadastrar extends AppCompatActivity {
 
 
         preencherEscola();
+
 
 
 
@@ -204,8 +207,6 @@ public class Cadastrar extends AppCompatActivity {
 
 
 
-
-
         nomeProprio.addTextChangedListener(validar);
         apelido1.addTextChangedListener(validar);
         apelido2.addTextChangedListener(validar);
@@ -222,6 +223,7 @@ public class Cadastrar extends AppCompatActivity {
         databaseReferenceCursos = FirebaseDatabase.getInstance().getReference("Cursos");
 
 
+
         btnCarregarDocumentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -235,6 +237,8 @@ public class Cadastrar extends AppCompatActivity {
 
     }
 
+
+
     private void preencherEscola() {
 
         AutoCompleteEscola = findViewById(R.id.txtAutoCompleteEscola);
@@ -247,6 +251,7 @@ public class Cadastrar extends AppCompatActivity {
                 String nomeEscolas = ds.child("designacao").getValue(String.class);
                 nomes.add(nomeEscolas);
             }
+
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Cadastrar.this, R.layout.combo_item_escola, nomes);
                 AutoCompleteEscola.setAdapter(arrayAdapter);
             }
