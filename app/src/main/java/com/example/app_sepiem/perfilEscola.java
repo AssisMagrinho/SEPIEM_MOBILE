@@ -12,6 +12,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 public class perfilEscola extends AppCompatActivity {
@@ -35,6 +37,9 @@ public class perfilEscola extends AppCompatActivity {
         designacao.setText(getIntent().getStringExtra("designacao"));
         localizacao.setText(getIntent().getStringExtra("localizacao"));
         descricao.setText(getIntent().getStringExtra("descricao"));
+
+        Animation animation = AnimationUtils.loadAnimation(designacao.getContext(), android.R.anim.slide_out_right);
+        designacao.startAnimation(animation);
 
         linkInscricao.setOnClickListener(new View.OnClickListener() {
             @Override

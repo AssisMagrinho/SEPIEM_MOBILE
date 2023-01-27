@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="40dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="10dp"
+            app:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="23dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Ageu de Carvalho António José"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="italic|bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:padding="1dp"
+                        android:gravity="center"
+                        android:layout_alignParentStart="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:padding="5dp"
+                            android:src="@drawable/ic_baseline_person_pin_circle_24"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"/>
+                        <TextView
+                            android:text="Bº Popular\n Angola, Uige"
+                            android:textSize="12sp"
+                            android:layout_margin="5dp"
+                            android:textColor="#615E5E5E"
+                            android:textStyle="bold|normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:padding="1dp"
+                        android:gravity="center"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:padding="5dp"
+                            android:src="@drawable/ic_baseline_phone_android_24"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"/>
+                        <TextView
+                            android:text="929 861 296"
+                            android:textSize="12sp"
+                            android:layout_margin="5dp"
+                            android:textColor="#2554BA"
+                            android:textStyle="bold|normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        app:tint="@color/color_default"
+                        android:padding="2dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_baseline_email_24"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="beltoraniojose1@gmail.com"
+                            android:textSize="12sp"
+                            android:textColor="#2554BA"
+                            android:textStyle="bold"
+                            android:textAlignment="textStart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            card_view:ignore="RtlCompat" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:padding="2dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/facebook"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Ageu De Carvalho AJ"
+                            android:textSize="12sp"
+                            android:textColor="#2554BA"
+                            android:textStyle="bold"
+                            android:textAlignment="textStart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            card_view:ignore="RtlCompat" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:padding="2dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/whatsapp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="929 861 296"
+                            android:textSize="12sp"
+                            android:textColor="#2554BA"
+                            android:textStyle="bold"
+                            android:textAlignment="textStart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            card_view:ignore="RtlCompat" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:padding="2dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/unikivi"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Engenharia Informática/IP-UNIKIVI/2018-2023"
+                            android:textSize="14sp"
+                            android:textColor="#2554BA"
+                            android:textStyle="bold"
+                            android:textAlignment="textStart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            card_view:ignore="RtlCompat" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:src="@drawable/ageu_foto"
+        app:shapeAppearanceOverlay="@style/Circular"
+        android:elevation="15dp"
+        android:padding="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="98dp"
+        android:layout_height="98dp"/>
+
+</RelativeLayout>

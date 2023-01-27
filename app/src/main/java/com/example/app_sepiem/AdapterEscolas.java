@@ -5,10 +5,15 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -32,10 +37,15 @@ public class AdapterEscolas extends RecyclerView.Adapter<AdapterEscolas.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolderEscolas holder, int position) {
 
+        Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), android.R.anim.slide_in_left);
+
         Escolas escolas = list.get(position);
 
         holder.designacao.setText(escolas.getDesignacao());
         holder.localizacao.setText(escolas.getLocalizacao());
+
+        holder.itemView.startAnimation(animation);
+
 
         holder.v.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +56,7 @@ public class AdapterEscolas extends RecyclerView.Adapter<AdapterEscolas.ViewHold
                 intent.putExtra("designacao", escolas.getDesignacao());
                 intent.putExtra("localizacao", escolas.getLocalizacao());
                 intent.putExtra("descricao", escolas.getDescricao());
+
 
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -76,6 +87,7 @@ public class AdapterEscolas extends RecyclerView.Adapter<AdapterEscolas.ViewHold
 
        TextView designacao,localizacao;
 
+
        View v;
 
         public ViewHolderEscolas(@NonNull View itemView) {
@@ -83,6 +95,8 @@ public class AdapterEscolas extends RecyclerView.Adapter<AdapterEscolas.ViewHold
 
             designacao = itemView.findViewById(R.id.txtDesignacaoEscola);
             localizacao = itemView.findViewById(R.id.txtLocalizacaoEscola);
+
+
 
             v = itemView;
         }

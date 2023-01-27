@@ -4,6 +4,8 @@ public class Escolas {
 
     String designacao, localizacao, latitude, longitude, descricao;
 
+
+
     public String getDesignacao() {
         return designacao;
     }
@@ -23,4 +25,6 @@ public class Escolas {
     public String getDescricao() {
         return descricao;
     }
+
+
 }

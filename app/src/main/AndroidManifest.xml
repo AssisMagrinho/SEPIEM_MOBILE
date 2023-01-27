@@ -16,6 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.APP_SEPIEM">
         <activity
+            android:name=".sobreNos"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".perfilEscola"
             android:exported="false"
             android:parentActivityName=".activityEscola">

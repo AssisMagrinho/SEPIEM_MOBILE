@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -36,6 +37,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -58,7 +61,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -71,11 +76,17 @@ public class pesquisarInscricao extends AppCompatActivity {
     private AutoCompleteTextView pesquisar;
     private RecyclerView listaInscritos;
     private Button btnImprimirComprovativo;
-
+    String dateTime;
+    Calendar calendar;
+    SimpleDateFormat simpleDateFormat;
     TextView nome,apelido1, apelido2,BI, naturalidade, residencia, nascimento, provincia,escola, curso;
 
     String[] arrayInformacao = new String[]{"Nome Completo","Bilhete","Naturalidade", "Residência", "Nascimento", "Província", "Escola", "Curso"};
     public static String[] arryDadosCandidatos;
+
+    Bitmap bmp, scaledBmp;
+
+
 
     @Override
     public void onBackPressed() {
@@ -103,6 +114,9 @@ public class pesquisarInscricao extends AppCompatActivity {
         setContentView(R.layout.activity_pesquisar_inscricao);
 //        getSupportActionBar().setTitle("Pesquisar...");
         checkConnection();
+
+
+
         nome = findViewById(R.id.lblNome);
         apelido1 = findViewById(R.id.lblApelido1);
         apelido2 = findViewById(R.id.lblApelido2);
@@ -116,6 +130,13 @@ public class pesquisarInscricao extends AppCompatActivity {
 
         btnImprimirComprovativo = findViewById(R.id.btnImprimirComprovativo);
         btnImprimirComprovativo.setVisibility(View.INVISIBLE);
+
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.mortarboard_200px);
+        scaledBmp = Bitmap.createScaledBitmap(bmp, 45, 50, false);
+
+
+
+
 
 
     /*    menu = findViewById(R.id.txtMenu);
@@ -139,6 +160,10 @@ public class pesquisarInscricao extends AppCompatActivity {
 
         preencherPesquisa();
 
+        Animation animation = AnimationUtils.loadAnimation(pesquisar.getContext(), android.R.anim.slide_in_left);
+        pesquisar.startAnimation(animation);
+
+
         ActivityCompat.requestPermissions(this, new String[]
                 {Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED
         );
@@ -158,6 +183,8 @@ public class pesquisarInscricao extends AppCompatActivity {
                 PdfDocument.Page myPage1 = myPdfDocument.startPage(myPageInfo1);
 
                 Canvas canvas = myPage1.getCanvas();
+
+                canvas.drawBitmap(scaledBmp, 0, 0, myPaint);
 
                 myPaint.setTextAlign(Paint.Align.CENTER);
                 myPaint.setTextSize(12.0f);
@@ -212,11 +239,19 @@ public class pesquisarInscricao extends AppCompatActivity {
                 canvas.drawText("Foto", 190, 250, myPaint);
 
                  */
+                // format type 7
+                calendar = Calendar.getInstance();
+                calendar = Calendar.getInstance();
+                simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss aaa z");
+                dateTime = simpleDateFormat.format(calendar.getTime()).toString();
+
 
                 canvas.drawText("Nota: ", 10, 320, myPaint);
                 canvas.drawLine(35, 325, myPageInfo1.getPageWidth()-10, 325, myPaint);
                 canvas.drawLine(10, 345, myPageInfo1.getPageWidth()-10, 345, myPaint);
-                canvas.drawLine(10, 365, myPageInfo1.getPageWidth()-10, 365, myPaint);
+
+                canvas.drawText("Data/Hora: "+dateTime, 10, 365, myPaint);
+               // canvas.drawLine(10, 365, myPageInfo1.getPageWidth()-10, 365, myPaint);
 
 
 
@@ -264,7 +299,7 @@ public class pesquisarInscricao extends AppCompatActivity {
                 return true;
             case R.id.item_SobreNos:
 
-                startActivity(new Intent(pesquisarInscricao.this, perfilEscola.class));
+                startActivity(new Intent(pesquisarInscricao.this, sobreNos.class));
                 return true;
 
                 /*
@@ -359,7 +394,10 @@ public class pesquisarInscricao extends AppCompatActivity {
 
                             String selecionar = parent.getItemAtPosition(postion).toString();
 
+
                             getCandidatos(selecionar);
+
+
 
                             btnImprimirComprovativo.setVisibility(View.VISIBLE);
 

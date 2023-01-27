@@ -3,5 +3,114 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string-array name="municipios">
+        <item>Cabinda</item>
+        <item>Cacongo</item>
+        <item>Buco-Zau</item>
+        <item>Belize</item>
+        <item>M´Banza Kongo</item>
+        <item>Soyo</item>
+        <item>N´Zeto</item>
+        <item>Tomboco</item>
+        <item>Noqui</item>
+        <item>Kuimba</item>
+        <item>Uige</item>
+        <item>Ambuila</item>
+        <item>Songo</item>
+        <item>Bembe</item>
+        <item>Negage</item>
+        <item>Bungo</item>
+        <item>Maquela do Zombo</item>
+        <item>Damba</item>
+        <item>Kangola</item>
+        <item>Sanza Pombo</item>
+        <item>Quitexe</item>
+        <item>Quimbele</item>
+        <item>Santa Cruz</item>
+        <item>Puri</item>
+        <item>Mucaba</item>
+        <item>Buengas</item>
+        <item>Luanda</item>
+        <item>Cazenga</item>
+        <item>Cacuaco</item>
+        <item>Viana</item>
+        <item>Belas</item>
+        <item>Icolo Bengo</item>
+        <item>Quissama</item>
+        <item>Sumbe</item>
+        <item>Amboim</item>
+        <item>Quilenda</item>
+        <item>Porto Amboim</item>
+        <item>Quilenda</item>
+        <item>Libolo</item>
+        <item>Kibala</item>
+        <item>Mussende</item>
+        <item>Seles</item>
+        <item>Conda</item>
+        <item>Cassongue</item>
+        <item>Ceia</item>
+        <item>Ebo</item>
+        <item>Malanje</item>
+        <item>Cacuso</item>
+        <item>Calandula</item>
+        <item>Cambundi-Catembo</item>
+        <item>Quela</item>
+        <item>Kakombo</item>
+        <item>Massango</item>
+        <item>Luquembo</item>
+        <item>Marimba</item>
+        <item>Kunda-Dia-Baze</item>
+        <item>Kirima</item>
+        <item>Mucari</item>
+        <item>Cangandala</item>
+        <item>Kiwaba-Nzogi</item>
+        <item>Lucapa</item>
+        <item>Cambulo</item>
+        <item>Chitato</item>
+        <item>Cuilo</item>
+        <item>Cuango</item>
+        <item>Lubalo</item>
+        <item>Capenda-Camulemba</item>
+        <item>Xá-Muteba</item>
+        <item>Benguela</item>
+        <item>Baía Farta</item>
+        <item>Lobito</item>
+        <item>Catumbela</item>
+        <item>Cubal</item>
+        <item>Ganda</item>
+        <item>Balombo</item>
+        <item>Bocolo</item>
+        <item>Caimbambo</item>
+        <item>Chongoroi</item>
+        <item>Huambo</item>
+        <item>Tchipipa-Tcholohanga</item>
+        <item>Katchiungo</item>
+        <item>Bailundo</item>
+        <item>Caála</item>
+        <item>Ecunha</item>
+        <item>Ukuma</item>
+        <item>Longonjo</item>
+        <item>Mungo</item>
+        <item>Londuimbali</item>
+        <item>Tchijenje</item>
+        <item>Cuito</item>
+        <item>Cunhinga</item>
+        <item>Chinguar</item>
+        <item>Andulo</item>
+        <item>N´harea</item>
+        <item>Camapupa</item>
+        <item>Cuemba</item>
+        <item>Chitembo</item>
+        <item>Catabola</item>
+        <item>Luena</item>
+        <item>Kamanongue</item>
+        <item>Léua</item>
+        <item>Luacano</item>
+        <item>Cameia</item>
+        <item>Budas-Lumbala-Nguimbo</item>
+        <item>Luchazes</item>
+        <item>Alto Zambeze</item>
+        <item>Luan</item>
+    </string-array>
 
 </resources>

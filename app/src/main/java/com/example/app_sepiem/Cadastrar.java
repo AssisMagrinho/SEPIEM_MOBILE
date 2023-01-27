@@ -24,6 +24,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -66,7 +68,7 @@ public class Cadastrar extends AppCompatActivity {
     EditText apelido1 ;
     EditText apelido2 ;
     EditText bilhete ;
-    EditText naturalidade ;
+    AutoCompleteTextView naturalidade ;
     EditText provincia;
     EditText residencia ;
     EditText nascimento ;
@@ -80,12 +82,14 @@ public class Cadastrar extends AppCompatActivity {
 
     Button  btnFinalizarInscricao, btnCarregarDocumentos;
 
-    String[] itemsProvincias = {"Cuanza Norte","Luanda","Uige"};
+    String[] itemsProvincias = {"Bié","Bengo","Benguela","Cabinda","Cunene","Cuanza Sul","Cuanza Norte","Cuando Cubango",
+            "Huíla","Huambo","Luanda","Lunda Norte","Lunda Sul","Malanje","Moxico","Namibe","Uige","Zaire"
+    };
 
 
 
     AutoCompleteTextView AutoCompleteProvincia, AutoCompleteEscola,AutoCompleteCurso;
-    ArrayAdapter<String>  adapterItemsProvincia;
+    ArrayAdapter<String>  adapterItemsProvincia, adapterItemsMunicipios;
 
 
     @Override
@@ -120,13 +124,15 @@ public class Cadastrar extends AppCompatActivity {
         preencherEscola();
 
 
-
+        naturalidade = findViewById(R.id.autoCompleteNaturalidade);
+        String[] municipios = getResources().getStringArray(R.array.municipios);
+        adapterItemsMunicipios = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,municipios);
+        naturalidade.setAdapter(adapterItemsMunicipios);
+        naturalidade.setThreshold(1);
 
 
 
         AutoCompleteProvincia = findViewById(R.id.txtAutoCompleteProvincia);
-
-
 
         adapterItemsProvincia = new ArrayAdapter<String>(this, R.layout.combo_item_provincia, itemsProvincias);
 
@@ -190,7 +196,7 @@ public class Cadastrar extends AppCompatActivity {
         apelido1 = findViewById(R.id.txtApelido1);
         apelido2 = findViewById(R.id.txtApelido2);
         bilhete = findViewById(R.id.txtBI);
-        naturalidade = findViewById(R.id.txtNaturalidade);
+        naturalidade = findViewById(R.id.autoCompleteNaturalidade);
         provincia = findViewById(R.id.txtAutoCompleteProvincia);
         residencia = findViewById(R.id.txtResidencia);
         nascimento = findViewById(R.id.dateFormat);
@@ -203,9 +209,6 @@ public class Cadastrar extends AppCompatActivity {
         btnCarregarDocumentos.setVisibility(View.INVISIBLE);
         btnFinalizarInscricao.setVisibility(View.INVISIBLE);
         lblDocumentos.setVisibility(View.INVISIBLE);
-
-
-
 
         nomeProprio.addTextChangedListener(validar);
         apelido1.addTextChangedListener(validar);

@@ -97,8 +97,8 @@
             android:layout_marginTop="16dp"
             android:text="Naturalidade"
             android:textColor="@color/white"/>
-        <EditText
-            android:id="@+id/txtNaturalidade"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteNaturalidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ex.: Uige"
