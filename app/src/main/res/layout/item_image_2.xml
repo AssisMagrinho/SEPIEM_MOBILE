@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_Ageu"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -159,6 +161,8 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/linkWhastAppAgeu"
+
                             android:text="929 861 296"
                             android:textSize="12sp"
                             android:textColor="#2554BA"
@@ -189,7 +193,7 @@
 
                         <TextView
                             android:text="Engenharia Informática/IP-UNIKIVI/2018-2023"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textColor="#2554BA"
                             android:textStyle="bold"
                             android:textAlignment="textStart"

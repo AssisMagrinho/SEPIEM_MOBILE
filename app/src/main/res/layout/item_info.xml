@@ -39,7 +39,7 @@
         </LinearLayout>
         <TextView
             android:id="@+id/txtPerfilDescricao"
-            android:text="+244 926/998 022689"
+            android:text="Sem Informação Disponível"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="18sp"

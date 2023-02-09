@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_Assis"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -30,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="Assis Fancisco Magrinho"
+                    android:text="Assis Francisco Magrinho"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="italic|bold" />
@@ -59,7 +60,7 @@
                             android:layout_margin="12dp"
                             android:text="Angola, Uige\nMbemba Ngango, Rua J"
                             android:textColor="#615E5E5E"
-                            android:textSize="15sp"
+                            android:textSize="12sp"
                             android:textStyle="bold|normal" />
                     </LinearLayout>
 
@@ -110,7 +111,7 @@
                             android:id="@+id/linkGmailAssis"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="assisfrancsicomagrinhonew@gmail.com"
+                            android:text="assisfranciscomagrinhonew@gmail.com"
                             android:textAlignment="textStart"
                             android:textColor="#2554BA"
                             android:textSize="12sp"

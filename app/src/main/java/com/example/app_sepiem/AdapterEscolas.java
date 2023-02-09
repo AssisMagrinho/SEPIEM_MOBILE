@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -44,7 +45,9 @@ public class AdapterEscolas extends RecyclerView.Adapter<AdapterEscolas.ViewHold
         holder.designacao.setText(escolas.getDesignacao());
         holder.localizacao.setText(escolas.getLocalizacao());
 
-        holder.itemView.startAnimation(animation);
+       // holder.itemView.startAnimation(animation);
+
+        holder.cardView.startAnimation(AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.anim_list));
 
 
         holder.v.setOnClickListener(new View.OnClickListener() {
@@ -86,13 +89,13 @@ public class AdapterEscolas extends RecyclerView.Adapter<AdapterEscolas.ViewHold
     public static class ViewHolderEscolas extends RecyclerView.ViewHolder{
 
        TextView designacao,localizacao;
-
-
        View v;
+       CardView cardView;
 
         public ViewHolderEscolas(@NonNull View itemView) {
             super(itemView);
 
+            cardView = itemView.findViewById(R.id.cardViewEscola);
             designacao = itemView.findViewById(R.id.txtDesignacaoEscola);
             localizacao = itemView.findViewById(R.id.txtLocalizacaoEscola);
 

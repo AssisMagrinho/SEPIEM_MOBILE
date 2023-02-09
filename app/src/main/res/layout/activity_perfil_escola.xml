@@ -31,7 +31,6 @@
 
             <include layout="@layout/item_add"/>
             <include layout="@layout/item_info"/>
-            <include layout="@layout/item_email"/>
 
         </LinearLayout>
     </ScrollView>

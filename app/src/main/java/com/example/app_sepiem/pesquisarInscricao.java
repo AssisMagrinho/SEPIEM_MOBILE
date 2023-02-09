@@ -2,6 +2,7 @@ package com.example.app_sepiem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -83,6 +84,7 @@ public class pesquisarInscricao extends AppCompatActivity {
 
     String[] arrayInformacao = new String[]{"Nome Completo","Bilhete","Naturalidade", "Residência", "Nascimento", "Província", "Escola", "Curso"};
     public static String[] arryDadosCandidatos;
+    public static String nomeComrovativoPdf;
 
     Bitmap bmp, scaledBmp;
 
@@ -117,9 +119,9 @@ public class pesquisarInscricao extends AppCompatActivity {
 
 
 
-        nome = findViewById(R.id.lblNome);
-        apelido1 = findViewById(R.id.lblApelido1);
-        apelido2 = findViewById(R.id.lblApelido2);
+       // nome = findViewById(R.id.lblNome);
+      //  apelido1 = findViewById(R.id.lblApelido1);
+     //   apelido2 = findViewById(R.id.lblApelido2);
         BI = findViewById(R.id.lblBI);
         naturalidade = findViewById(R.id.lblNaturalidade);
         residencia = findViewById(R.id.lblResidencia);
@@ -197,7 +199,8 @@ public class pesquisarInscricao extends AppCompatActivity {
 
                 myPaint.setTextAlign(Paint.Align.LEFT);
                 myPaint.setTextSize(10.0f);
-                myPaint.setColor(Color.rgb(122, 119, 119));
+                myPaint.setColor(Color.RED);
+               // myPaint.setColor(Color.rgb(122, 119, 119));
 
                 canvas.drawText("Informações do Candidato:", 10, 70, myPaint);
 
@@ -260,10 +263,12 @@ public class pesquisarInscricao extends AppCompatActivity {
 
                 myPdfDocument.finishPage(myPage1);
 
-                File file = new File(Environment.getExternalStorageDirectory(), "Download/SEPIEM_Comprovativo.pdf");
+                File file = new File(Environment.getExternalStorageDirectory(), "Download/SEPIEM_Comprovativo"+"_"+nomeComrovativoPdf+".pdf");
+                File file2 = new File(Environment.getExternalStorageDirectory(), "/SEPIEM_Comprovativo"+"_"+nomeComrovativoPdf+".pdf");
 
                 try {
                     myPdfDocument.writeTo(new FileOutputStream(file));
+                    myPdfDocument.writeTo(new FileOutputStream(file2));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -437,6 +442,7 @@ public class pesquisarInscricao extends AppCompatActivity {
                     }
                     MyAdapter adapter = new MyAdapter(candidatosInfos, pesquisarInscricao.this);
                     listaInscritos.setAdapter(adapter);
+
                 }
             }
 
@@ -526,15 +532,18 @@ public class pesquisarInscricao extends AppCompatActivity {
          * (custom ViewHolder).
          */
         public static class ViewHolder extends RecyclerView.ViewHolder {
-          TextView nome, apelido1, apelido2, BI,naturalidade, residencia, nascimento, provincia, escola,curso;
+          TextView nomeCompleto,nome, apelido1, apelido2, BI,naturalidade, residencia, nascimento, provincia, escola,curso;
+          CardView cardViewInscito;
+
 
             public ViewHolder(View view) {
                 super(view);
                 // Define click listener for the ViewHolder's View
 
-                nome = (TextView) view.findViewById(R.id.lblNome);
-                apelido1 = (TextView) view.findViewById(R.id.lblApelido1);
-                apelido2 = (TextView) view.findViewById(R.id.lblApelido2);
+               // nome = (TextView) view.findViewById(R.id.lblNome);
+                //apelido1 = (TextView) view.findViewById(R.id.lblApelido1);
+             //   apelido2 = (TextView) view.findViewById(R.id.lblApelido2);
+                nomeCompleto = (TextView) view.findViewById(R.id.lblNomeCompleto);
                 BI = (TextView) view.findViewById(R.id.lblBI);
                 naturalidade = (TextView) view.findViewById(R.id.lblNaturalidade);
                 residencia = (TextView) view.findViewById(R.id.lblResidencia);
@@ -542,6 +551,7 @@ public class pesquisarInscricao extends AppCompatActivity {
                 provincia = (TextView) view.findViewById(R.id.lblProvincia);
                 escola = (TextView) view.findViewById(R.id.lblEscola);
                 curso = (TextView) view.findViewById(R.id.lblCurso);
+                cardViewInscito = view.findViewById(R.id.cardViewInscrito);
             }
 
 
@@ -565,11 +575,14 @@ public class pesquisarInscricao extends AppCompatActivity {
         @Override
         public void onBindViewHolder(ViewHolder viewHolder, final int position) {
                 candidatosInfo thiscandidatoInfo = mDataSet.get(position);
+                String nomeComleto;
 
-                viewHolder.nome.setText(thiscandidatoInfo.getNome());
-                viewHolder.apelido1.setText(thiscandidatoInfo.getApelido1());
-                viewHolder.apelido2.setText(thiscandidatoInfo.getApelido2());
+              //  viewHolder.nome.setText(thiscandidatoInfo.getNome());
+                //viewHolder.apelido1.setText(thiscandidatoInfo.getApelido1());
+               // viewHolder.apelido2.setText(thiscandidatoInfo.getApelido2());
                 viewHolder.BI.setText(thiscandidatoInfo.getBI());
+                nomeComleto = thiscandidatoInfo.getNome()+" "+thiscandidatoInfo.getApelido1()+" "+thiscandidatoInfo.getApelido2();
+                viewHolder.nomeCompleto.setText(nomeComleto);
                 viewHolder.naturalidade.setText(thiscandidatoInfo.getNaturalidade());
                 viewHolder.residencia.setText(thiscandidatoInfo.getResidencia());
                 viewHolder.nascimento.setText(thiscandidatoInfo.getNascimento());
@@ -578,12 +591,21 @@ public class pesquisarInscricao extends AppCompatActivity {
                 viewHolder.curso.setText(thiscandidatoInfo.getCurso());
 
 
+            viewHolder.cardViewInscito.startAnimation(AnimationUtils.loadAnimation(viewHolder.itemView.getContext(), R.anim.anim_list));
+
+
+
+
+
 
             arryDadosCandidatos = new String[]{""+thiscandidatoInfo.getNome()+" "+thiscandidatoInfo.getApelido1()+" "+thiscandidatoInfo.getApelido2(),""+thiscandidatoInfo.getBI(),
                     ""+thiscandidatoInfo.getNaturalidade(),""+thiscandidatoInfo.getResidencia(),
                     ""+thiscandidatoInfo.getNascimento(),""+thiscandidatoInfo.getProvincia(),
                     ""+thiscandidatoInfo.getEscola(),""+thiscandidatoInfo.getCurso()
             };
+
+            nomeComrovativoPdf = thiscandidatoInfo.getNome()+" "+thiscandidatoInfo.getApelido2();
+
 
 
         }
