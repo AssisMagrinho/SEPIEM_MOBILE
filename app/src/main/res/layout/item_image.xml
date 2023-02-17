@@ -11,6 +11,7 @@
         android:layout_centerInParent="true">
 
         <androidx.cardview.widget.CardView
+
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginTop="40dp"
@@ -26,6 +27,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtTotalInscritosEscola"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -59,8 +61,8 @@
                     android:orientation="horizontal"
                     android:weightSum="3">
 
-                    <ImageView
 
+                    <ImageView
                         android:layout_width="100dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/new_email_24" />
@@ -97,13 +99,13 @@
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
-    <com.google.android.material.imageview.ShapeableImageView
-        android:src="@drawable/app_icon"
+    <pl.droidsonroids.gif.GifImageView
+        android:src="@drawable/chapeu"
         app:shapeAppearanceOverlay="@style/Circular"
         android:elevation="12dp"
-        android:padding="5dp"
+        android:padding="1dp"
         android:layout_centerHorizontal="true"
-        android:layout_width="90dp"
-        android:layout_height="90dp"/>
+        android:layout_width="180dp"
+        android:layout_height="117dp"/>
 
 </RelativeLayout>

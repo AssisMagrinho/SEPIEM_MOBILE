@@ -23,8 +23,11 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,11 +54,15 @@ import java.util.Locale;
 public class activityEscola extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, refTotalEscolas;
     AdapterEscolas adapterEscolas;
     ArrayList<Escolas> list;
+    TextView totEscolas;
+    ImageView notificationTotalEscolas;
 
     private TextView designacaoEscola;
+
+    int totalEscolas;
 
 
 
@@ -77,15 +84,44 @@ public class activityEscola extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.tb_Escolas);
         designacaoEscola = findViewById(R.id.txtDesignacaoEscola);
+        totEscolas = findViewById(R.id.txtTotalEscolas);
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Escolas");
+        refTotalEscolas = FirebaseDatabase.getInstance().getReference("Escolas");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
         adapterEscolas = new AdapterEscolas(this, list);
         recyclerView.setAdapter(adapterEscolas);
+
+
+        refTotalEscolas.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()){
+
+                    totalEscolas = (int) snapshot.getChildrenCount();
+
+                    totEscolas.setText(Integer.toString(totalEscolas)+"+");
+
+                    // Toast.makeText(pesquisarInscricao.this, "1000 Inscrito(s)"+Integer.toString(totalInscritos), Toast.LENGTH_LONG).show();
+
+                }else {
+                    // Toast.makeText(pesquisarInscricao.this, "0 Inscritos", Toast.LENGTH_LONG).show();
+
+                    totEscolas.setText("0+");
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -105,11 +141,43 @@ public class activityEscola extends AppCompatActivity {
             }
         });
 
+        notificationTotalEscolas = findViewById(R.id.notification_Id);
+
+        notificationTotalEscolas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog();
+            }
+        });
+
 
     }
 
 
+    private void showDialog() {
 
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottomsheetlayoutnotificationescolas);
+
+        LinearLayout infoLayout = dialog.findViewById(R.id.layoutInfo);
+        TextView bootomsheetTotalEscolas = dialog.findViewById(R.id.bottomSheetTotalEscolas);
+
+        bootomsheetTotalEscolas.setText(totEscolas.getText());
+
+        infoLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(activityEscola.this, activityEscola.class));
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+    }
 
     private void showDialogInterConnection() {
         final Dialog dialog = new Dialog(this);

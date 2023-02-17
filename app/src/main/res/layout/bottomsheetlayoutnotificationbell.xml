@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_bg">
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/layoutEscolas"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        >
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="34dp"
+            android:src="@drawable/img_inscritos"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inscritos - SEPIEM"
+            android:layout_marginLeft="30dp"
+            android:textSize="16sp"
+            android:textColor="#B3102D"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutInfo"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:gravity="center"
+        >
+        <TextView
+            android:id="@+id/bottomSheetTotalInscritos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0+"
+            android:layout_marginLeft="30dp"
+            android:textSize="25sp"
+            android:layout_gravity="center"
+            android:textColor="#B3102D"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+</LinearLayout>

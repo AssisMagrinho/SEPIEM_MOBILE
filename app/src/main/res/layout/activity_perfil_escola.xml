@@ -6,8 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:paddingTop="10dp"
+    android:gravity="top"
     tools:context=".perfilEscola">
+
 
 
 
@@ -18,6 +20,14 @@
         android:layout_marginRight="16dp"
         android:layout_height="wrap_content"
         layout="@layout/item_image"
+        />
+    <include
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_height="wrap_content"
+        layout="@layout/notificationbell"
         />
     
     <ScrollView

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    >
+
+    <ImageView
+        android:id="@+id/notification_Id"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/school_notification" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="28dp"
+        android:id="@+id/cardViewNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="#B3102D"
+        android:textAlignment="center"
+        android:padding="0dp"
+        >
+        <TextView
+            android:padding="2dp"
+            android:id="@+id/txtTotalEscolas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="0+"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            />
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

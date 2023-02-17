@@ -44,6 +44,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,26 +68,31 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import pl.droidsonroids.gif.GifImageButton;
+
 
 public class pesquisarInscricao extends AppCompatActivity {
 
     private long backPressedTime;
     private Toast backToast;
 
-    DatabaseReference ref;
+    DatabaseReference ref, refTotalInscritos;
     private AutoCompleteTextView pesquisar;
     private RecyclerView listaInscritos;
     private Button btnImprimirComprovativo;
     String dateTime;
     Calendar calendar;
     SimpleDateFormat simpleDateFormat;
-    TextView nome,apelido1, apelido2,BI, naturalidade, residencia, nascimento, provincia,escola, curso;
+    TextView nome,apelido1, apelido2,BI, naturalidade, residencia, nascimento, provincia,escola, curso, totInscritos, txtbottomSheetTotalInscritos;
+    GifImageButton notificacaoInscritos;
 
     String[] arrayInformacao = new String[]{"Nome Completo","Bilhete","Naturalidade", "Residência", "Nascimento", "Província", "Escola", "Curso"};
     public static String[] arryDadosCandidatos;
     public static String nomeComrovativoPdf;
 
     Bitmap bmp, scaledBmp;
+
+    int totalInscritos;
 
 
 
@@ -129,6 +135,10 @@ public class pesquisarInscricao extends AppCompatActivity {
         provincia = findViewById(R.id.lblProvincia);
         escola = findViewById(R.id.lblEscola);
         curso = findViewById(R.id.lblCurso);
+        totInscritos = findViewById(R.id.txtTotalInscritos);
+        txtbottomSheetTotalInscritos = findViewById(R.id.bottomSheetTotalInscritos);
+
+
 
         btnImprimirComprovativo = findViewById(R.id.btnImprimirComprovativo);
         btnImprimirComprovativo.setVisibility(View.INVISIBLE);
@@ -141,16 +151,44 @@ public class pesquisarInscricao extends AppCompatActivity {
 
 
 
-    /*    menu = findViewById(R.id.txtMenu);
 
-        menu.setOnClickListener(new View.OnClickListener() {
+        refTotalInscritos = FirebaseDatabase.getInstance().getReference("Inscritos");
+
+        refTotalInscritos.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()){
+
+                    totalInscritos = (int) snapshot.getChildrenCount();
+
+                    totInscritos.setText(Integer.toString(totalInscritos)+"+");
+
+                   // Toast.makeText(pesquisarInscricao.this, "1000 Inscrito(s)"+Integer.toString(totalInscritos), Toast.LENGTH_LONG).show();
+
+                }else {
+                   // Toast.makeText(pesquisarInscricao.this, "0 Inscritos", Toast.LENGTH_LONG).show();
+
+                    totInscritos.setText("0+");
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        notificacaoInscritos = findViewById(R.id.notification_Id);
+
+        notificacaoInscritos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // startActivity(new Intent(pesquisarInscricao.this, Cadastrar.class));
-
                 showDialog();
             }
-        });*/
+        });
+
 
         ref = FirebaseDatabase.getInstance().getReference("Inscritos");
         pesquisar = (AutoCompleteTextView) findViewById(R.id.txtPesquisar);
@@ -343,29 +381,21 @@ public class pesquisarInscricao extends AppCompatActivity {
     }
 
     private void showDialog() {
+
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.bottomsheetlayout);
-        LinearLayout escolasLayout = dialog.findViewById(R.id.layoutEscolas);
-        LinearLayout inscricaoLayout = dialog.findViewById(R.id.layoutInscricao);
-        LinearLayout infoLayout = dialog.findViewById(R.id.layoutInfo);
+        dialog.setContentView(R.layout.bottomsheetlayoutnotificationbell);
 
-        escolasLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(pesquisarInscricao.this, "Clicou Escolas", Toast.LENGTH_SHORT).show();
-            }
-        });
-        inscricaoLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(pesquisarInscricao.this, Cadastrar.class));
-            }
-        });
+        LinearLayout infoLayout = dialog.findViewById(R.id.layoutInfo);
+        TextView bootomsheetTotalInscritos = dialog.findViewById(R.id.bottomSheetTotalInscritos);
+
+        bootomsheetTotalInscritos.setText(totInscritos.getText());
+
         infoLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(pesquisarInscricao.this, "Clicou Info", Toast.LENGTH_SHORT).show();
+
+                startActivity(new Intent(pesquisarInscricao.this, pesquisarInscricao.class));
             }
         });
 

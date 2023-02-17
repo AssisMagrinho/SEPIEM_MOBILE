@@ -1,5 +1,6 @@
 package com.example.app_sepiem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -14,11 +15,20 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class perfilEscola extends AppCompatActivity {
 
-    TextView designacao, localizacao, descricao, linkInscricao;
+    TextView designacao, localizacao, descricao, linkInscricao, totInscritos;
+    DatabaseReference refTotalInscritos;
+    int totalInscritos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +42,7 @@ public class perfilEscola extends AppCompatActivity {
         localizacao = findViewById(R.id.txtPerfilLocalizacao);
         descricao = findViewById(R.id.txtPerfilDescricao);
         linkInscricao = findViewById(R.id.linkInscrever);
+        totInscritos = findViewById(R.id.txtTotalInscritos);
 
 
         designacao.setText(getIntent().getStringExtra("designacao"));
@@ -40,6 +51,32 @@ public class perfilEscola extends AppCompatActivity {
 
         Animation animation = AnimationUtils.loadAnimation(designacao.getContext(), android.R.anim.slide_out_right);
         designacao.startAnimation(animation);
+
+        refTotalInscritos = FirebaseDatabase.getInstance().getReference();
+        refTotalInscritos.child("Inscritos").orderByChild("escola").equalTo(""+designacao.getText()+"").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+
+                    totalInscritos = (int) snapshot.getChildrenCount();
+
+                    totInscritos.setText(Integer.toString(totalInscritos)+" Inscritos");
+
+                    // Toast.makeText(pesquisarInscricao.this, "1000 Inscrito(s)"+Integer.toString(totalInscritos), Toast.LENGTH_LONG).show();
+
+                }else {
+                    // Toast.makeText(pesquisarInscricao.this, "0 Inscritos", Toast.LENGTH_LONG).show();
+
+                    totInscritos.setText("0 Inscritos");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         linkInscricao.setOnClickListener(new View.OnClickListener() {
             @Override
